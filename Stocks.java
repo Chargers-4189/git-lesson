@@ -8,15 +8,21 @@ public class Stocks extends Thread{
     @Override
     public void run(){
        while (true) {
-                for (int i = 0; i < stockNames.length; i++) {
-            double priceChange = Math.random() * 0.15 - 0.01;
+        for (int i = 0; i < stockNames.length; i++) {
+            double priceChange = 1;
+            if (Math.random() >= 0.5) {
+                priceChange =+ Math.random() * 0.025;
+            } else {
+                priceChange =+ Math.random() * -0.025;
+            }
             stockPrices[i] += stockPrices[i] * priceChange;
         }
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }        
+        }       
+        System.out.println(getCurrentStock("Nvidia"));
        } 
 
     }
