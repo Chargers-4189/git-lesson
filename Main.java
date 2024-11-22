@@ -1,5 +1,9 @@
 import java.util.ArrayList;
+<<<<<<< HEAD
 
+=======
+import java.util.Arrays;
+>>>>>>> 8d8b416 (findAverage)
 import java.util.Collections;
 
 public class Main {
@@ -29,19 +33,26 @@ public class Main {
         int year = 365;
         for (int i = 0; i < year; i++) {
             try{
+<<<<<<< HEAD
                 //wait a day
+=======
+>>>>>>> 8d8b416 (findAverage)
             Thread.sleep(1000);
             }
             catch(Exception e){
                 System.out.println("Failed to wait a day");
             }
+<<<<<<< HEAD
             //getting stocks
+=======
+>>>>>>> 8d8b416 (findAverage)
             stocksListCokeCola.add(stocks.getCurrentStock("Coke-Cola"));
             stocksListGoogle.add(stocks.getCurrentStock("Google"));
             stocksListNvidia.add(stocks.getCurrentStock("Nvidia"));
             stocksListLenovo.add(stocks.getCurrentStock("Lenovo"));
             stocksListHoneywell.add(stocks.getCurrentStock("Honeywell"));
 
+<<<<<<< HEAD
             //System.out.println(stocksListGoogle.get(i));
 
             AverageCokeCola = AverageCokeCola + stocksListCokeCola.get(i);
@@ -52,6 +63,18 @@ public class Main {
 
           }
             //dividing to create averages
+=======
+            System.out.println(stocksListGoogle.get(i));
+
+            AverageCokeCola = AverageCokeCola + stocksListGoogle.get(i);
+            AverageGoogle = AverageGoogle + stocksListGoogle.get(i);
+            AverageNvidia = AverageNvidia + stocksListGoogle.get(i);
+            AverageLenovo = AverageLenovo + stocksListGoogle.get(i);
+            AverageHoneywell = AverageHoneywell + stocksListGoogle.get(i);
+
+          }
+          
+>>>>>>> 8d8b416 (findAverage)
             AverageCokeCola = AverageCokeCola / year;
             AverageGoogle = AverageGoogle / year;
             AverageNvidia = AverageNvidia / year;
@@ -68,7 +91,11 @@ public class Main {
             double LowLenovo = Collections.min(stocksListLenovo);
             double HighHoneywell = Collections.max(stocksListHoneywell);
             double LowHoneywell = Collections.min(stocksListHoneywell);
+<<<<<<< HEAD
             //averageing average of stocks to lowest or highest stock to create these variables
+=======
+
+>>>>>>> 8d8b416 (findAverage)
             double StartLowCokeCola = (AverageCokeCola + LowCokeCola) / 2;
             double StartHighCokeCola = (AverageCokeCola + HighCokeCola) / 2;
             double StartLowGoogle = (AverageGoogle + LowGoogle) / 2;
@@ -80,6 +107,7 @@ public class Main {
             double StartLowHoneywell = (AverageHoneywell + LowHoneywell) / 2;
             double StartHighHoneywell = (AverageHoneywell + HighHoneywell) / 2;
 
+<<<<<<< HEAD
             //rounding to nearest hundredth
             StartLowCokeCola = Math.round(StartLowCokeCola * 100.0) / 100.0;
             StartHighCokeCola = Math.round(StartHighCokeCola * 100.0) / 100.0;
@@ -172,5 +200,17 @@ public class Main {
             System.out.println("Net worth::" + (honeywellStock * stocks.getCurrentStock("Honeywell")  + lenovoStock * stocks.getCurrentStock("Lenovo") + googleStock * stocks.getCurrentStock("Google") + nvidiaStock * stocks.getCurrentStock("Nvidia") + cokeStock * stocks.getCurrentStock("Coke-Cola") + bankAccount) );
         }
 
+=======
+
+            System.out.println("You Buy Google At:" + StartHighGoogle);
+            System.out.println("You Sell Google At:" + StartLowGoogle);
+            System.out.println("Google's Average is:" + AverageGoogle);
+
+
+            
+          
+
+        
+>>>>>>> 8d8b416 (findAverage)
     }
 }

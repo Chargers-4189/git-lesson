@@ -8,6 +8,7 @@ public class Stocks extends Thread{
     @Override
     public void run(){
        while (true) {
+<<<<<<< HEAD
         for (int i = 0; i < stockNames.length; i++) {
             double priceChange = 1;
             if (Math.random() >= 0.5) {
@@ -16,6 +17,16 @@ public class Stocks extends Thread{
                 priceChange =+ Math.random() * -0.025;
             }
             stockPrices[i] += stockPrices[i] * priceChange;
+=======
+                for (int i = 0; i < stockNames.length; i++) {
+            double priceChange = Math.random() * 5 - 2.5;
+            if(0<stockPrices[i]+priceChange){
+                stockPrices[i] += priceChange;
+            }else{
+                stockPrices[i]=0;
+            }
+            
+>>>>>>> 8d8b416 (findAverage)
         }
         try {
             Thread.sleep(1000);
