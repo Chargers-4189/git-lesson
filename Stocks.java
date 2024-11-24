@@ -1,6 +1,6 @@
 public class Stocks extends Thread{
     private String[] stockNames = {"Coke-Cola", "Google", "Nvidia", "Lenovo", "Honeywell"};
-    private double[] stockPrices = {70.23, 100.02, 900.45, 90.22, 20.35};
+    private double[] stockPrices = {20.35, 100.02, 900.45, 90.22, 70.23};
 
     public Stocks(){
 
@@ -10,18 +10,19 @@ public class Stocks extends Thread{
        while (true) {
         for (int i = 0; i < stockNames.length; i++) {
             double priceChange = 1;
-            if (Math.random() > 0.5) {
-                priceChange =+ Math.random() * (Math.random() * 0.05);
+            if (Math.random() >= 0.5) {
+                priceChange =+ Math.random() * 0.025;
             } else {
-                priceChange =+ Math.random() * -(Math.random() * 0.05);
+                priceChange =+ Math.random() * -0.025;
             }
             stockPrices[i] += stockPrices[i] * priceChange;
         }
         try {
-            Thread.sleep(100);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }       
+        System.out.println(getCurrentStock("Nvidia"));
        } 
 
     }
@@ -34,6 +35,6 @@ public class Stocks extends Thread{
                 break;
             }
         }
-        return Math.round(stockPrices[index] * 100.0) / 100.0;
+        return stockPrices[index];
     }
 }
