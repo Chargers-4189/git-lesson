@@ -26,7 +26,7 @@ public class Main {
         Double AverageNvidia = 0.0;
         Double AverageLenovo = 0.0;
         Double AverageHoneywell = 0.0;
-        int year = 50;
+        int year = 365;
         for (int i = 0; i < year; i++) {
             try{
                 //wait a day
