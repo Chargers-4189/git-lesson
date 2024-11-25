@@ -105,13 +105,13 @@ public class Main {
                 bankAccount += stocks.getCurrentStock("Google");
                 googleStock -= 1;
                 System.out.println("Bank::" + bankAccount);
-                System.out.println("Google Stock::"+ googleStock);
+                System.out.println("Google Stock (sell)::"+ googleStock);
             // bottom if statement buys shares if share value is below StartLowGoogle and bank account is higher than share value
             }else if(stocks.getCurrentStock("Google") <= StartLowGoogle && bankAccount > stocks.getCurrentStock("Google") && bankAccount > 1000) {
                 bankAccount -= stocks.getCurrentStock("Google");
                 googleStock += 1;
                 System.out.println("Bank::" + bankAccount);
-                System.out.println("Google Stock::"+ googleStock);
+                System.out.println("Google Stock (buy)::"+ googleStock);
             }
 
             //Nvidia
@@ -119,13 +119,13 @@ public class Main {
                 bankAccount += stocks.getCurrentStock("Nvidia");
                 nvidiaStock -= 1;
                 System.out.println("Bank::" + bankAccount);
-                System.out.println("Nvidia Stock::"+ nvidiaStock);
+                System.out.println("Nvidia Stock (sell)::"+ nvidiaStock);
             // bottom if statement buys shares if share value is below StartHighNvidia and bank account is higher than share value
             }else if(stocks.getCurrentStock("Nvidia") <= StartLowNvidia && bankAccount > stocks.getCurrentStock("Nvidia") && bankAccount > 1000) {
                 bankAccount -= stocks.getCurrentStock("Nvidia");
                 nvidiaStock += 1;
                 System.out.println("Bank::" + bankAccount);
-                System.out.println("Nvidia Stock::"+ nvidiaStock);
+                System.out.println("Nvidia Stock (buy)::"+ nvidiaStock);
             }
 
             //Coke
@@ -133,13 +133,13 @@ public class Main {
                 bankAccount += stocks.getCurrentStock("Coke-Cola");
                 cokeStock -= 1;
                 System.out.println("Bank::" + bankAccount);
-                System.out.println("Coke Stock::"+ cokeStock);
+                System.out.println("Coke Stock (sell)::"+ cokeStock);
             // bottom if statement buys shares if share value is below StartHighNvidia and bank account is higher than share value
             }else if(stocks.getCurrentStock("Coke-Cola") <= StartLowCokeCola && bankAccount > stocks.getCurrentStock("Coke-Cola") && bankAccount > 1000) {
                 bankAccount -= stocks.getCurrentStock("Coke-Cola");
                 cokeStock += 1;
                 System.out.println("Bank::" + bankAccount);
-                System.out.println("Coke Stock::"+ cokeStock);
+                System.out.println("Coke Stock (buy)::"+ cokeStock);
             }
 
             //Lenovo
@@ -147,13 +147,13 @@ public class Main {
                 bankAccount += stocks.getCurrentStock("Lenovo");
                 lenovoStock -= 1;
                 System.out.println("Bank::" + bankAccount);
-                System.out.println("Lenovo Stock::"+ lenovoStock);
+                System.out.println("Lenovo Stock (sell)::"+ lenovoStock);
             // bottom if statement buys shares if share value is below StartHighNvidia and bank account is higher than share value
             }else if(stocks.getCurrentStock("Lenovo") <= StartLowLenovo && bankAccount > stocks.getCurrentStock("Lenovo") && bankAccount > 1000) {
                 bankAccount -= stocks.getCurrentStock("Lenovo");
                 lenovoStock += 1;
                 System.out.println("Bank::" + bankAccount);
-                System.out.println("Lenovo Stock::"+ lenovoStock);
+                System.out.println("Lenovo Stock (buy)::"+ lenovoStock);
             }
 
             //Honeywell
@@ -161,15 +161,15 @@ public class Main {
                 bankAccount += stocks.getCurrentStock("Honeywell");
                 cokeStock -= 1;
                 System.out.println("Bank::" + bankAccount);
-                System.out.println("Honeywell Stock::"+ honeywellStock);
+                System.out.println("Honeywell Stock (sell)::"+ honeywellStock);
             // bottom if statement buys shares if share value is below StartHighNvidia and bank account is higher than share value
             }else if(stocks.getCurrentStock("Honeywell") <= StartLowHoneywell && bankAccount > stocks.getCurrentStock("Honeywell") && bankAccount > 1000) {
                 bankAccount -= stocks.getCurrentStock("Honeywell");
                 honeywellStock += 1;
                 System.out.println("Bank::" + bankAccount);
-                System.out.println("Honeywell Stock::"+ honeywellStock);
+                System.out.println("Honeywell Stock (buy)::"+ honeywellStock);
             }
-            
+            System.out.println("Net worth::" + (honeywellStock * stocks.getCurrentStock("Honeywell")  + lenovoStock * stocks.getCurrentStock("Lenovo") + googleStock * stocks.getCurrentStock("Google") + nvidiaStock * stocks.getCurrentStock("Nvidia") + cokeStock * stocks.getCurrentStock("Coke-Cola") + bankAccount) );
         }
 
     }
