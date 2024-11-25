@@ -22,7 +22,6 @@ public class Stocks extends Thread{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }       
-        System.out.println(getCurrentStock("Nvidia"));
        } 
 
     }
