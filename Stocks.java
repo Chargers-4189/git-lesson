@@ -19,7 +19,7 @@ public class Stocks extends Thread{
             stockPrices[i] += stockPrices[i] * priceChange;
 =======
                 for (int i = 0; i < stockNames.length; i++) {
-            double priceChange = Math.random() * 5 - 2.5;
+            double priceChange = Math.random() * 5 - 2.4;
             if(0<stockPrices[i]+priceChange){
                 stockPrices[i] += priceChange;
             }else{

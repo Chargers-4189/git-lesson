@@ -30,7 +30,7 @@ public class Main {
         Double AverageNvidia = 0.0;
         Double AverageLenovo = 0.0;
         Double AverageHoneywell = 0.0;
-        int year = 365;
+        int year = 10;
         for (int i = 0; i < year; i++) {
             try{
 <<<<<<< HEAD
@@ -53,6 +53,7 @@ public class Main {
             stocksListHoneywell.add(stocks.getCurrentStock("Honeywell"));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             //System.out.println(stocksListGoogle.get(i));
 
             AverageCokeCola = AverageCokeCola + stocksListCokeCola.get(i);
@@ -65,6 +66,9 @@ public class Main {
             //dividing to create averages
 =======
             System.out.println(stocksListGoogle.get(i));
+=======
+            //System.out.println(stocksListGoogle.get(i));
+>>>>>>> 07de3eb (RoundingAdded)
 
             AverageCokeCola = AverageCokeCola + stocksListGoogle.get(i);
             AverageGoogle = AverageGoogle + stocksListGoogle.get(i);
@@ -74,6 +78,7 @@ public class Main {
 
           }
           
+<<<<<<< HEAD
 >>>>>>> 8d8b416 (findAverage)
             AverageCokeCola = AverageCokeCola / year;
             AverageGoogle = AverageGoogle / year;
@@ -212,5 +217,46 @@ public class Main {
 
         
 >>>>>>> 8d8b416 (findAverage)
+=======
+        AverageCokeCola = AverageCokeCola / year;
+        AverageGoogle = AverageGoogle / year;
+        AverageNvidia = AverageNvidia / year;
+        AverageLenovo = AverageLenovo / year;
+        AverageHoneywell = AverageHoneywell / year;
+
+        double HighCokeCola = Collections.max(stocksListCokeCola);
+        double LowCokeCola = Collections.min(stocksListCokeCola);
+        double HighGoogle = Collections.max(stocksListGoogle);
+        double LowGoogle = Collections.min(stocksListGoogle);
+        double HighNvidia = Collections.max(stocksListNvidia);
+        double LowNvidia = Collections.min(stocksListNvidia);
+        double HighLenovo = Collections.max(stocksListLenovo);
+        double LowLenovo = Collections.min(stocksListLenovo);
+        double HighHoneywell = Collections.max(stocksListHoneywell);
+        double LowHoneywell = Collections.min(stocksListHoneywell);
+
+        double StartLowCokeCola = (AverageCokeCola + LowCokeCola) / 2;
+        double StartHighCokeCola = (AverageCokeCola + HighCokeCola) / 2;
+        double StartLowGoogle = (AverageGoogle + LowGoogle) / 2;
+        double StartHighGoogle = (AverageGoogle + HighGoogle) / 2;
+        double StartLowNvidia = (AverageNvidia + LowNvidia) / 2;
+        double StartHighNvidia = (AverageNvidia + HighNvidia) / 2;
+        double StartLowLenovo = (AverageLenovo + LowLenovo) / 2;
+        double StartHighLenovo = (AverageLenovo + HighLenovo) / 2;
+        double StartLowHoneywell = (AverageHoneywell + LowHoneywell) / 2;
+        double StartHighHoneywell = (AverageHoneywell + HighHoneywell) / 2;
+
+        StartLowCokeCola = Math.round(StartLowCokeCola * 100.0) / 100.0;
+        StartHighCokeCola = Math.round(StartHighCokeCola * 100.0) / 100.0;
+        StartLowGoogle = Math.round(StartLowGoogle * 100.0) / 100.0;
+        StartHighGoogle = Math.round(StartHighGoogle * 100.0) / 100.0;
+        StartLowNvidia = Math.round(StartLowNvidia * 100.0) / 100.0;
+        StartHighNvidia = Math.round(StartHighNvidia * 100.0) / 100.0;
+        StartLowLenovo = Math.round(StartLowLenovo * 100.0) / 100.0;
+        StartHighLenovo = Math.round(StartHighLenovo * 100.0) / 100.0;
+        StartLowHoneywell = Math.round(StartLowHoneywell * 100.0) / 100.0;
+        StartHighHoneywell = Math.round(StartHighHoneywell * 100.0) / 100.0;
+
+>>>>>>> 07de3eb (RoundingAdded)
     }
 }
