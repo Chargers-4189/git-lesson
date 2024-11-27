@@ -2,7 +2,7 @@
 
 Created By: Caleb & JD
 
-# GitHub Full Course
+# GitHub Lesson
 
 Today, you will learn how Git and GitHub works by creating an application collaboratively. Additionally, the basics of Git and conventions to use when doing a pull request or commit.
 
@@ -11,14 +11,14 @@ Today, you will learn how Git and GitHub works by creating an application collab
 Create a simple stock application that will generate profit. You will use the strategy of `buy low and sell high` for this application. There are 5 stocks that are available with different starting values and varying levels of risk.
 
 Here are the 5 companies and their details.
-| Company | Coca-Cola | Google | Nvidia | Lenovo | Honey Well |
+| Company | Coke | Google | Nvidia | Lenovo | Honey Well |
 | -------------------- | --------- | ------- | ------- | ------ | ---------- |
 | Starting Stock Value | $64.38 | $169.43 | $136.02 | $9.09 | $230.60 |
-| Perceived Risk Level | Low | High | Medium | Low | High |
+| Volatile Level | Low | High | Medium | Low | High |
 
 `1 Second = 1 Day`
 
-These values will change every second, representing one full day. The prices will follow a randomly fluctuating graph. The choice to buy or sell during a second will depend on the graph. The Perceived Risk Level is the chance of a stock performing very well or bad.
+These values will change every second, representing one full day. The prices will follow a randomly fluctuating graph. The choice to buy or sell during a second will depend on the graph. The Volatile Level is the chance of a stock fluctuating very high or low.
 
 ### Rules
 
@@ -39,17 +39,18 @@ Your application must meet these requirements to be complete.
 The available resources for your application to gather is the `getCompanies()` and `getCurrentStock()` methods from the `Stocks` class.
 
 ```java
+public static Stocks stocks = new Stocks(); // Importing Stocks
 /**
  * Returns a String array of company names available for stocks.
  * @return The String array of company names.
  */
-String[] companies = stocks.getCompanies();
+stocks.getCompanies();
 /**
  * Returns the double of a requested company's stock price.
  * @param company Company name in lowercase
  * @return The price of the requested company's stock
  */
-double colaStock = stocks.getCurrentStock("coca-cola");
+stocks.getCurrentStock("coca-cola");
 ```
 
 <details>
@@ -78,6 +79,6 @@ public class Main {
 
 </details>
 
-## GitHub Intro
+## GitHub Course
 
-[Link GitHub to VSCode](https://docs.google.com/presentation/d/1sSJEyJDiNvWRryz5Uf32xsFG6aphf1amna9CFw5BIJU/edit?usp=sharing)
+Click on the `github-course.md` to view more lessons on GitHub.
