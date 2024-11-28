@@ -8,13 +8,13 @@ Today, you will learn how Git and GitHub works by creating an application collab
 
 ## Application Specs
 
-Create a simple stock application that will generate profit. You will use the strategy of `buy low and sell high` for this application. There are 5 stocks that are available with different starting values and varying levels of risk.
+Create a simple stock application that will generate profit. You will use the strategy of `buy low and sell high` for this application. There are siz stocks that are available with different starting values and varying levels of risk.
 
 Here are the 5 companies and their details.
-| Company | Coke | Google | Nvidia | Lenovo | Honey Well |
-| -------------------- | --------- | ------- | ------- | ------ | ---------- |
-| Starting Stock Value | $64.38 | $169.43 | $136.02 | $9.09 | $230.60 |
-| Volatile Level | Low | High | Medium | Low | High |
+| Company | Coke | Walmart | Google | Nvidia | Microsoft | Honey Well |
+| -------------------- | --------- | --------- | ------- | ------- | ------ | ---------- |
+| Starting Stock Value | $64.38 | $91.88 | $169.43 | $136.02 | $422.99 | $230.60 |
+| Volatile Level | Low | Medium | High | Medium | High | High |
 
 `1 Second = 1 Day`
 
@@ -25,7 +25,7 @@ These values will change every second, representing one full day. The prices wil
 Your application must meet these requirements to be complete.
 | Starting Budget | $1,000 |
 | --------------- | -------- |
-| Target Goal | $10,000 |
+| Target Goal | $5,000 |
 | Timeframe | 180 Days |
 
 1. The application must reach at least $10,000 by the 180th day (roughly 6 months) from it's starting budget of $1,000.
