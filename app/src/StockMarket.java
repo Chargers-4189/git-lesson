@@ -41,23 +41,24 @@ public class StockMarket extends Thread {
   public void run() {
     while (runMarket) {
       try {
-        Thread.sleep(Main.msPerDay);
+        Thread.sleep(Main.getMsPerDay());
         Main.addDay();
         updateStocks();
-
-        logStockMarket();
-
       } catch (InterruptedException e) {
         e.printStackTrace();
         Thread.currentThread().interrupt();
+      }
+      if (Logger.getLogSeverity() == Logger.LogLevel.DEBUG) {
+        logStockMarket();
       }
     }
   }
 
   /**
-   * Returns a String array of company names available for stocks.
-   * 
-   * @return The String array of company names.
+   * Returns an array of company names whose stocks are available for trading.
+   *
+   * @return An array of company names (Strings). Returns an empty array if there
+   *         are no stocks.
    */
   public String[] getCompanies() {
     String[] companies = { "", "", "", "", "", "" };
@@ -68,10 +69,10 @@ public class StockMarket extends Thread {
   }
 
   /**
-   * Returns the double of a requested company's stock price.
-   * 
-   * @param company Company name in lowercase
-   * @return The price of the requested company's stock
+   * Returns the current price of a specified company's stock.
+   *
+   * @param company The name of the company (case-insensitive).
+   * @return The stock price (double). Returns -1 if the company is not found.
    */
   public synchronized double getStockPrice(String company) {
     for (Stock stock : stocks) {
@@ -79,15 +80,16 @@ public class StockMarket extends Thread {
         return stock.price;
       }
     }
-    Logger.logEvent(Logger.LogLevel.ERROR, Constants.ERR_M_SOURCE, Constants.ERR_M_COMP_NAME);
-    return 0;
+    Logger.logEvent(Logger.LogLevel.ERROR, Constants.M_SOURCE, Constants.ERR_M_COMP_NAME);
+    return -1;
   }
 
   /**
-   * Returns the string of a requested company's volatile level.
-   * 
-   * @param company Company name in lowercase
-   * @return The volatile level of the requested company
+   * Returns the volatility level of a specified company's stock.
+   *
+   * @param company The name of the company (case-insensitive).
+   * @return The volatility level (String). Returns an empty string if the company
+   *         is not found.
    */
   public synchronized String getVolatileLevel(String company) {
     for (Stock stock : stocks) {
@@ -95,77 +97,143 @@ public class StockMarket extends Thread {
         return stock.volatility;
       }
     }
-    Logger.logEvent(Logger.LogLevel.ERROR, Constants.ERR_M_SOURCE, Constants.ERR_M_COMP_NAME);
+    Logger.logEvent(Logger.LogLevel.ERROR, Constants.M_SOURCE, Constants.ERR_M_COMP_NAME);
     return "";
   }
 
+  /**
+   * Returns the number of shares owned of a specified company's stock.
+   *
+   * @param company The name of the company (case-insensitive).
+   * @return The number of shares owned (int). Returns -1 if the company is not
+   *         found.
+   */
   public synchronized int getShares(String company) {
     for (Stock stock : stocks) {
       if (stock.company.equals(company.toLowerCase())) {
         return stock.shares;
       }
     }
-    Logger.logEvent(Logger.LogLevel.ERROR, Constants.ERR_M_SOURCE, Constants.ERR_M_COMP_NAME);
-    return 0;
+    Logger.logEvent(Logger.LogLevel.ERROR, Constants.M_SOURCE, Constants.ERR_M_COMP_NAME);
+    return -1;
   }
 
+  /**
+   * Purchases shares of a specified company's stock.
+   * <p>
+   * Cannot purchase shares if the account balance is below the price of `stock
+   * price * amount of shares`. Buying shares will slightly increase the stock
+   * price. This method will automatically charge the account the money due.
+   *
+   * @param amount  The number of shares to purchase (must be a positive, non-zero
+   *                value).
+   * @param company The name of the company (case-insensitive).
+   * @return True if the purchase was successful, false otherwise. Returns false
+   *         if the company is not found, insufficient funds are available, or the
+   *         amount is invalid.
+   */
   public synchronized boolean buyShares(int amount, String company) {
     amount = Math.abs(amount);
     for (Stock stock : stocks) {
       if (stock.company.equals(company.toLowerCase())) {
         double funds = stock.price * amount;
-        if (account.withdraw(funds)) {
+        if (account.withdraw(funds, "Purchased " + amount + " shares from " + company + ".")) {
           stock.shares += amount;
           for (int i = amount; i > 0; i--) {
             double priceChange = (Math
                 .abs(randomGenerator.nextGaussian()) * getVolatileFactor(stock.volatility) * Constants.shareFactor
                 * stock.price);
             stock.price = stock.price + priceChange;
+            Logger.logEvent(Logger.LogLevel.DEBUG, Constants.M_SOURCE,
+                "Share bought from " + Constants.ANSI_CYAN + stock.company + Constants.ANSI_RESET + "."
+                    + Constants.ANSI_RED + " Cost: $"
+                    + Math.round(funds * 100.0) / 100.0
+                    + " | Balance: $"
+                    + Math.round(account.getBalance() * 100.0) / 100.0
+                    + " | Stock Price Now: $" + Math.round(stock.price * 100.0)
+                        / 100.0
+                    + Constants.ANSI_RESET);
           }
           return true;
         }
-        Logger.logEvent(Logger.LogLevel.WARN, Constants.ERR_M_SOURCE, Constants.ERR_M_BUY_SHARE);
+        Logger.logEvent(Logger.LogLevel.WARN, Constants.M_SOURCE, Constants.ERR_M_BUY_SHARE);
         return false;
       }
     }
-    Logger.logEvent(Logger.LogLevel.ERROR, Constants.ERR_M_SOURCE, Constants.ERR_M_COMP_NAME);
+    Logger.logEvent(Logger.LogLevel.ERROR, Constants.M_SOURCE, Constants.ERR_M_COMP_NAME);
     return false;
   }
 
+  /**
+   * Sells shares of a specified company's stock.
+   * <P>
+   * Cannot sell shares if the total shares is 0. Buying shares will slightly
+   * decrease the stock price. This method will automatically pay the account the
+   * money earned.
+   * 
+   * @param amount  The number of shares to sell (must be a positive, non-zero
+   *                value).
+   * @param company The name of the company (case-insensitive).
+   * @return True if the sale was successful, false otherwise. Returns false if
+   *         the company is not found, insufficient shares are available, or the
+   *         amount is invalid.
+   */
   public synchronized boolean sellShares(int amount, String company) {
     amount = Math.abs(amount);
     for (Stock stock : stocks) {
       if (stock.company.equals(company.toLowerCase())) {
-        if (stock.shares > 0) {
-          double funds = stock.price * amount;
-          account.deposit(funds);
+        double funds = stock.price * amount;
+        if (stock.shares > 0 && account.deposit(funds, "Sold " + amount + " shares from " + company + ".")) {
           stock.shares -= amount;
           for (int i = amount; i > 0; i--) {
             double priceChange = (Math
                 .abs(randomGenerator.nextGaussian()) * getVolatileFactor(stock.volatility) * Constants.shareFactor
                 * stock.price);
             stock.price = stock.price - priceChange;
+            Logger.logEvent(Logger.LogLevel.DEBUG, Constants.M_SOURCE,
+                "Share sold from " + Constants.ANSI_CYAN + stock.company + Constants.ANSI_RESET + "."
+                    + Constants.ANSI_GREEN + " Profit: $"
+                    + Math.round(funds * 100.0) / 100.0
+                    + " | Balance: $"
+                    + Math.round(account.getBalance() * 100.0) / 100.0
+                    + " | Stock Price Now: $" + Math.round(stock.price * 100.0)
+                        / 100.0
+                    + Constants.ANSI_RESET);
           }
           return true;
         }
-        Logger.logEvent(Logger.LogLevel.WARN, Constants.ERR_M_SOURCE, Constants.ERR_M_SELL_SHARE);
+        Logger.logEvent(Logger.LogLevel.WARN, Constants.M_SOURCE, Constants.ERR_M_SELL_SHARE);
         return false;
       }
     }
-    Logger.logEvent(Logger.LogLevel.ERROR, Constants.ERR_M_SOURCE, Constants.ERR_M_COMP_NAME);
+    Logger.logEvent(Logger.LogLevel.ERROR, Constants.M_SOURCE, Constants.ERR_M_COMP_NAME);
     return false;
   }
 
+  /**
+   * Sets the seed for the random number generator used in the stock market
+   * simulation.
+   * <P>
+   * Setting a seed value other than 0 will produce repeatable results
+   * for the same seed value. Using a seed of 0 will use a randomly generated
+   * seed.
+   *
+   * @param seed The seed value for the random number generator.
+   */
   public void setRandomSeed(long seed) {
     randomGenerator = new Random();
     if (seed != 0) {
       this.seed = seed;
+      Logger.logEvent(Logger.LogLevel.DEBUG, Constants.M_SOURCE,
+          "Using set seed: " + this.seed);
     } else {
       this.seed = new Random(System.nanoTime()).nextLong();
+      Logger.logEvent(Logger.LogLevel.DEBUG, Constants.M_SOURCE,
+          "Generating seed: " + this.seed);
     }
     randomGenerator.setSeed(this.seed);
-    System.out.println(Constants.ANSI_PURPLE + "\nRandom Seed: " + this.seed +
-        "L\n" + Constants.ANSI_RESET);
+    Logger.logEvent(Logger.LogLevel.INFO, Constants.M_SOURCE,
+        Constants.ANSI_PURPLE + "Random Seed: " + this.seed + Constants.ANSI_RESET);
   }
 
   private void updateStocks() {
@@ -174,6 +242,14 @@ public class StockMarket extends Thread {
         Random random = randomGenerator;
         stock.price = simulateStockPrice(stock.price, stock.volatility, random);
         stock.volatility = adjustVolatility(stock.price, stock.volatility, random);
+        Logger.logEvent(Logger.LogLevel.DEBUG, Constants.M_SOURCE,
+            "Stock " + Constants.ANSI_CYAN + stock.company + Constants.ANSI_RESET + " updated. Price: "
+                + Constants.ANSI_BLUE + "$" + stock.price
+                + Constants.ANSI_RESET
+                + " | Volatility Level: " + (stock.volatility == "HIGH" ? Constants.ANSI_RED
+                    : stock.volatility == "MEDIUM" ? Constants.ANSI_YELLOW
+                        : Constants.ANSI_GREEN)
+                + stock.volatility + Constants.ANSI_RESET);
       }
     }
   }
@@ -260,7 +336,7 @@ public class StockMarket extends Thread {
         writer.flush();
       }
     } catch (IOException e) {
-      Logger.logEvent(Logger.LogLevel.ERROR, Constants.ERR_M_SOURCE,
+      Logger.logEvent(Logger.LogLevel.ERROR, Constants.M_SOURCE,
           "Error writing stock logger to file: " + e.getMessage());
     }
   }

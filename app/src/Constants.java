@@ -25,7 +25,7 @@ public class Constants {
 
     public static final double shareFactor = 0.005;
 
-    public static final String ERR_M_SOURCE = "MARKET";
+    public static final String M_SOURCE = "MARKET";
     public static final String ERR_M_COMP_NAME = "Company name lookup failed: Invalid company name provided.";
     public static final String ERR_M_BUY_SHARE = "Purchasing share failed: Transaction cancelled by account.";
     public static final String ERR_M_SELL_SHARE = "Selling share failed: No shares left to sell.";
@@ -33,7 +33,10 @@ public class Constants {
     // Account
     public static final double INITIAL_BALANCE = 1000;
 
-    public static final String ERR_A_SOURCE = "ACCOUNT";
-    public static final String ERR_A_DEPOSIT = "Invalid deposit amount. You cannot deposit less than $0.";
+    public static final String A_SOURCE = "ACCOUNT";
+    public static final String ERR_A_DEPOSIT = "Invalid deposit amount. You cannot deposit $0 or less.";
     public static final String ERR_A_WITHDRAW = "Insufficient funds. Please make more money.";
+
+    // Main
+    public static final String MAIN_SOURCE = "MAIN";
 }
