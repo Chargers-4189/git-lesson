@@ -4,12 +4,14 @@ Created by: Caleb
 
 ### Before Starting:
 
-Some sections of this dive are summarized for you to easily understand and apply the concepts. If you want to learn more than the summarized version is given, clicking the link will give you more detailed information and examples. To find the original article that was summarized, look for this statement in each section:
-
+> [!TIP]
+> Some sections of this dive are summarized for you to easily understand and apply the concepts. If you want to learn more than the summarized version is given, clicking the link will give you more detailed information and examples. To find the original article that was summarized, look for this statement in each section:
+>
 > _This section is summarized from the article [link]_
 
-You are required to read articles tagged with the amount of time to read. Do not skip over these articles as they provide valuable information on how to apply the feature. An example is shown below:
-
+> [!IMPORTANT]
+> You are required to read articles tagged with the amount of time to read. Do not skip over these articles as they provide valuable information on how to apply the feature. An example is shown below:
+>
 > - [link] - 3 mins
 
 # GitHub Intro
@@ -58,7 +60,7 @@ Git can:
 
 Essentially, Git and repositories provide a structured and efficient way to manage software development projects.
 
-> **NOTE:**
+> [!NOTE]
 >
 > - Git is the underlying technology, a version control system that tracks changes to files over time.
 > - GitHub is a cloud-based platform that provides a user-friendly interface and additional features for working with Git repositories.
@@ -164,7 +166,7 @@ There are two main models for collaboration:
 You can see how these commands work together in this Git Diagram
 ![git-workflow](./resources//git-workflow.png)
 
-> **NOTE:**
+> [!NOTE]
 > All of these commands are done in the terminal. However, you'll likely be using VSCode and GitHub Desktop to expedite the process. Instead, you'll be working with a GUI, but all the concepts are still the same. It just isn't in a terminal.
 
 # Collaborating on GitHub
@@ -177,7 +179,11 @@ GitHub offers different tools for different communication needs within a reposit
 
 Use for tracking specific tasks, bugs, feature requests, and feedback related to the codebase. Issues are repository-specific, often have assigned owners, and generally lead to actionable tasks (like a fix or improvement). In essence, GitHub's bug-tracking system.
 
-### When to Use?
+- More reading: [About Issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues)
+
+- How to: [Creating an issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/creating-an-issue)
+
+#### When to Use?
 
 - You need to track tasks, report bugs, give feedback on a feature, or ask questions about repository files.
 
@@ -185,7 +191,9 @@ Use for tracking specific tasks, bugs, feature requests, and feedback related to
 
 Use for proposing specific code changes. PRs allow commenting on proposed changes, collaborative review, and integrating code into the repository. They are repository-specific and directly tied to code modifications.
 
-### When to use?
+- Further down we'll discuss the use of PRs and how to create one.
+
+#### When to use?
 
 - You want to fix a typo, make code changes, fix an issue with code, or comment on suggested changes.
 
@@ -193,9 +201,17 @@ Use for proposing specific code changes. PRs allow commenting on proposed change
 
 Use for broader, open-ended conversations, community building, brainstorming, and sharing information that isn't directly tied to specific code changes. Discussions can span multiple repositories and don't always have a clear owner or lead to specific tasks. They function more like forums.
 
-### When to use?
+- More reading: [About Discussions](https://docs.github.com/en/discussions/collaborating-with-your-community-using-discussions/about-discussions)
+
+- How to: [Quick start to Discussions](https://docs.github.com/en/discussions/quickstart)
+
+#### When to use?
 
 - You have a general question not related to specific files, want to share news, start an open-ended conversation, or make announcements to the community.
+
+## Formatting
+
+Github uses the Markdown format for all comments, posts, and replies. Use this as a guide to format your text: [Basic writing and formatting syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
 
 # Workflow
 
@@ -226,8 +242,10 @@ Here is an example illustration of a Git Workflow:
 
 ![Illustration of Git Workflow](https://nvie.com/img/git-model@2x.png)
 
-> Note: Sometimes, urgent bugs need to be fixed immediately (emergency repairs). On tag 0.2 of the illustration, a hotfix branch can be created directly from the main branch to implement the fix. This hotfix is then merged into both the development and main branches to ensure both are updated.
+> [!NOTE]
+> Sometimes, urgent bugs need to be fixed immediately (emergency repairs). On tag 0.2 of the illustration, a hotfix branch can be created directly from the main branch to implement the fix. This hotfix is then merged into both the development and main branches to ensure both are updated.
 
+> [!TIP]
 > Commit often: This helps maintain a clear and concise project history.
 >
 > Branch strategically: Use branches to isolate work, experiment, and collaborate effectively.
@@ -246,13 +264,13 @@ Next, you'll learn conventions to ensure clear and descriptive names for commits
 
 **Guidelines:**
 
-> **Atomic Commits:** Commit small and focused changes. Never commit multiple changes from multiple files.
->
-> **Code Review:** Actively participate in reviewing pull requests and code. Provide constructive Feedback.
->
-> **Stay Updated:** Actively fetch and pull any changes from the repository.
->
-> **Consistent Style Guide:** Use an extension or follow coding style guides for consistent formats and syntax.
+- **Atomic Commits:** Commit small and focused changes. Never commit multiple changes from multiple files.
+
+- **Code Review:** Actively participate in reviewing pull requests and code. Provide constructive Feedback.
+
+- **Stay Updated:** Actively fetch and pull any changes from the repository.
+
+- **Consistent Style Guide:** Use an extension or follow coding style guides for consistent formats and syntax.
 
 ## Git Commit Messages
 

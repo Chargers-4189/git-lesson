@@ -1,4 +1,4 @@
-# 11/20/2024 - Wednesday Activity
+Wednesday Activity
 
 Created By: Caleb & JD
 
@@ -39,7 +39,7 @@ Your application must meet these requirements to be complete.
 
 Use this example Stock Simulated Example to see the changes in data that occur with varying volatile levels.
 
-> **NOTICE:**
+> [!WARNING]
 >
 > This example was run without any shares purchased or sold on the stock market. When your app buys or sells a share, there is a miniscule change in price which will affect future stock prices. This is minimal and will still generate roughly the same shaped graph, but do not solely rely entirely on the graphs shown here.
 
@@ -407,6 +407,7 @@ Branches created to address bugs (e.g., `24-app/bugfix/buy-error`). Each bug fix
 
 Branches created for urgent bug fixes to the production version. These branches will be branched directly from `24-app` and merged back into both `24-app` and `24-app/development`.
 
+> [!NOTE]
 > What's the difference between main and releases?
 >
 > - **`main`** is always the most up-to-date, stable version of your code. New features are integrated here _after_ thorough testing and review.
@@ -417,28 +418,29 @@ Do not directly code on these branches. The purpose of these branches is to orga
 - New feature or bug fix
 
 - Branch off of `24-app/development` and name the new branch with the prefix `24-app/feature` or `24-app/bugfix` and the name of the feature/bug.
-    - For example: `24-app/feature/sell-algorithm`
-  - In this branch, develop, test, and commit your changes.
-  - Once finished, create a pull request to merge the feature/bug into `24-app/develop`
-  - Request approval from developers to catch any mistakes or code conventions.
-  - Once approved, merge the branch into `24-app/development`
+      - For example: `24-app/feature/sell-algorithm`
+    - In this branch, develop, test, and commit your changes.
+    - Once finished, create a pull request to merge the feature/bug into `24-app/develop`
+    - Request approval from developers to catch any mistakes or code conventions.
+    - Once approved, merge the branch into `24-app/development`
 
 - Creating a release
 
 - When releasing a version of your app to the main (`24-app`), you must first prepare it in `24-app/[release]` by pushing your changes from `24-app/development`. This allows for last-minute changes and minor bug fixes. Releases help the development branch to work on features that will be in the next release (however this might not be needed for a small application).
 
 - Ensure the development branch is in a state ready for release. All features and bug fixes intended for this release should be merged into `24-app/development`.
-    - Create a branch from development specifically for this release. We'll use `24-app/v1.0.0` as an example.
-    - Test the `24-app/v1.0.0` branch to ensure stability and correctness.
-    - Then you can add bugfixes or hotfixes if needed. Adding to the branch name after each addition: `24-app/v1.0.1`
+      - Create a branch from development specifically for this release. We'll use `24-app/v1.0.0` as an example.
+      - Test the `24-app/v1.0.0` branch to ensure stability and correctness.
+      - Then you can add bugfixes or hotfixes if needed. Adding to the branch name after each addition: `24-app/v1.0.1`
 
 - As always, when releases are stable and ready to be fully released to the public, it is merged into main. Here we need to do three things: Merge the release into main, create a tag for future reference, and merge release into development to continue work on the next release.
 
 - Create a pull request to merge `24-app/v1.0.1` into `24-app`.
-    - Request approval from developers to catch any mistakes or code conventions.
-    - After approval and merge, tag the release branch with a version number. [Use this article to learn how →](https://docs.github.com/en/desktop/managing-commits/managing-tags-in-github-desktop)
-    - Then you can merge `24-app/v1.0.1` into `24-app/development`, so it contains the bugfixes and hotfixes we made in this release.
+      - Request approval from developers to catch any mistakes or code conventions.
+      - After approval and merge, tag the release branch with a version number. [Use this article to learn how →](https://docs.github.com/en/desktop/managing-commits/managing-tags-in-github-desktop)
+      - Then you can merge `24-app/v1.0.1` into `24-app/development`, so it contains the bugfixes and hotfixes we made in this release.
 
+> [!NOTE]
 > As mentioned, this application has a small team and doesn't require many releases. However, this process will be used in massive projects that require testing and a lot of development work. This activity will give you some experience in this space so you can understand how it works in larger projects.
 
 You can review this image for reference:
@@ -450,17 +452,17 @@ You can review this image for reference:
 
 You will be graded based on how well your teammates communicate and collaborate with branching and pull requests. Here are the full rubric details:
 
-|            Criterion              |                                                     4 - Excellent (10 points)                                                      |                                               3 - Good (7 points)                                                |                                             2 - Fair (4 points)                                               |                              1 - Poor (1 point)                                |  0 - Not Attempted (0 points)    |
-| :-------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------: | :------------------------------: |
-| Meets Requirements (Rules 1-5):   |                              All requirements (target goal, tracking, restrictions) flawlessly met.                                |                           Most requirements met; minor omissions or inconsistencies.                             |                           Several requirements are unmet or significantly flawed.                             |         Most requirements unmet; application largely non-functional.           |   Application not submitted.     |
-| Algorithm Performance (Rule 7):   |                          Algorithm consistently surpasses the $5,000 target in over 25% of random runs.                            |                  Algorithm surpasses the target in over 10% of runs, with occasional failures.                   |                     Algorithm surpasses the target in under 10% of runs; many failures.                       |                Algorithm rarely or never surpasses the target.                 |           Not tested.            |
-|  Code Clarity and Readability:    |                                 Code is well-organized, well-documented, and easy to understand.                                   |             Code is generally understandable, but could benefit from more comments or organization.              |                Code is difficult to understand; lack of comments or inconsistent formatting.                  |           Code is poorly written, unreadable, and lacks structure.             | Code is missing or unorganized.  |
-|       Branching Strategy:         | Consistent use of feature, bugfix, and release branches; clear naming conventions; effective use of main and development branches  |                   Mostly correct branching; minor inconsistencies in naming or organization.                     |       Some misuse of branches; inconsistent naming; and difficulty understanding the branch structure.        |  Significant misuse of branches; confusing or disorganized branch structure.   |        No branches used.         |
-|         Commit Messages:          |                  All commits have clear, concise, and informative messages following the specified conventions.                    |                          Most commits have good messages; some minor inconsistencies.                            |                 Many commits lack sufficient information or follow inconsistent conventions.                  |         Commit messages are unclear, incomplete, or missing entirely.          |        No commits made.          |
-|          Pull Requests:           |    All pull requests are well-written, have clear descriptions and include thorough testing information. On-time submissions.      |   Most pull requests are adequate; some could benefit from more detailed descriptions or testing information.    |   Pull requests are poorly written, lack sufficient descriptions, or have inadequate testing information.     |   Pull requests are missing or severely lacking in quality and information.    |   No pull requests submitted.    |
-|  Collaboration and Code Review:   |      Active participation in code review; constructive feedback provided; timely responses to comments; conflict resolution.       |                   Participation in code review; feedback provided; some delays in responses.                     |   Minimal participation in code review; feedback is limited or unhelpful; significant delays in responses.    | Little to no participation in code review; feedback is missing or irrelevant.  |  No code review participation.   |
-| Issue Tracking & Communication:   |                          Effective use of issues for questions and to inform others about code reviews.                            |            Primarily used GitHub for communication; some minor mistakes in using issues or comments.             |                                            Partial use of GitHub.                                             |                   Limited use of GitHub for communication.                     |    No use of GitHub Issues.      |
-| Collaboration via GitHub Issues:  |                    Thorough planning and role assignment fully documented and discussed through GitHub Issues.                     |                   Most planning and role assignment details are documented on GitHub Issues.                     |                        Limited use of GitHub Issues for planning and role assignment.                         |           No use of GitHub Issues for planning and role assignment.            | No planning or role assignment.  |
+|              Criterion                |                                                        4 - Excellent (10 points)                                                        |                                                  3 - Good (7 points)                                                  |                                             2 - Fair (4 points)                                                |                                1 - Poor (1 point)                                  |  0 - Not Attempted (0 points)    |
+| :-----------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------: | :------------------------------: |
+|   Meets Requirements (Rules 1-5):     |                                 All requirements (target goal, tracking, restrictions) flawlessly met.                                  |                             Most requirements met; minor omissions or inconsistencies.                                |                           Several requirements are unmet or significantly flawed.                              |           Most requirements unmet; application largely non-functional.             |   Application not submitted.     |
+|   Algorithm Performance (Rule 7):     |                             Algorithm consistently surpasses the $5,000 target in over 25% of random runs.                              |                    Algorithm surpasses the target in over 10% of runs, with occasional failures.                      |                     Algorithm surpasses the target in under 10% of runs; many failures.                        |                  Algorithm rarely or never surpasses the target.                   |           Not tested.            |
+|    Code Clarity and Readability:      |                                   Code is well-organized, well-documented, and easy to understand.                                      |                Code is generally understandable, but could benefit from more comments or organization.                |                 Code is difficult to understand; lack of comments or inconsistent formatting.                  |             Code is poorly written, unreadable, and lacks structure.               | Code is missing or unorganized.  |
+|         Branching Strategy:           |    Consistent use of feature, bugfix, and release branches; clear naming conventions; effective use of main and development branches    |                     Mostly correct branching; minor inconsistencies in naming or organization.                        |        Some misuse of branches; inconsistent naming; and difficulty understanding the branch structure.        |    Significant misuse of branches; confusing or disorganized branch structure.     |        No branches used.         |
+|           Commit Messages:            |                     All commits have clear, concise, and informative messages following the specified conventions.                      |                             Most commits have good messages; some minor inconsistencies.                              |                  Many commits lack sufficient information or follow inconsistent conventions.                  |           Commit messages are unclear, incomplete, or missing entirely.            |        No commits made.          |
+|            Pull Requests:             |       All pull requests are well-written, have clear descriptions and include thorough testing information. On-time submissions.        |      Most pull requests are adequate; some could benefit from more detailed descriptions or testing information.      |   Pull requests are poorly written, lack sufficient descriptions, or have inadequate testing information.      |     Pull requests are missing or severely lacking in quality and information.      |   No pull requests submitted.    |
+|    Collaboration and Code Review:     |        Active participation in code review; constructive feedback provided; timely responses to comments; conflict resolution.          |                     Participation in code review; feedback provided; some delays in responses.                        |    Minimal participation in code review; feedback is limited or unhelpful; significant delays in responses.    |   Little to no participation in code review; feedback is missing or irrelevant.    |  No code review participation.   |
+|   Issue Tracking & Communication:     |                             Effective use of issues for questions and to inform others about code reviews.                              |              Primarily used GitHub for communication; some minor mistakes in using issues or comments.                |                                            Partial use of GitHub.                                              |                     Limited use of GitHub for communication.                       |    No use of GitHub Issues.      |
+| Collaboration via GitHub Discussions: |                    Thorough planning and role assignment fully documented and discussed through GitHub Discussions.                     |                   Most planning and role assignment details are documented on GitHub Discussions.                     |                      Limited use of GitHub Discussions for planning and role assignment.                       |           No use of GitHub Discussions for planning and role assignment.           | No planning or role assignment.  |
 
 **Total Points: 90**
 
