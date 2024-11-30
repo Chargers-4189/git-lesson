@@ -353,6 +353,12 @@ You will be using this GitHub repository for today's course:
 
 - Copy this `https://github.com/Chargers-4189/git-lesson.git` or [View the repository online](https://github.com/Chargers-4189/git-lesson).
 
+Quick Links:
+
+- [Issues Page](https://github.com/Chargers-4189/git-lesson/issues)
+- [Pull Requests](https://github.com/Chargers-4189/git-lesson/pulls)
+- [Discussions](https://github.com/Chargers-4189/git-lesson/discussions)
+
 ## Before You Start
 
 Designate 3 roles for your group:
