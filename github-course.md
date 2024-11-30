@@ -4,19 +4,19 @@ Created by: Caleb
 
 ### Before Starting:
 
-Some sections of this dive is summarized for you to easily understand and apply the concepts. If you want to learn more in-depth than the summarized version is given, click the link. This can give you more detailed information and examples. To find the original article that was summarized, look for this statement in each section:
+Some sections of this dive is summarized for you to easily understand and apply the concepts. If you want to learn more than the summarized version is given, clicking the link will give you more detailed information and examples. To find the original article that was summarized, look for this statement in each section:
 
 > _This section is summarized from the article [link]_
 
 You are required to read articles tagged with the amount of time to read. Do not skip over these articles as they provide valuable information or how to apply the feature. Example is shown below:
 
-> [link] - 3 mins
+> - [link] - 3 mins
 
-## GitHub Intro
+# GitHub Intro
 
-### Files and Folders
+## Files and Folders
 
-#### Files
+### Files
 
 There are many types of files:
 
@@ -31,7 +31,7 @@ They are typically given the name of the file with the format at the end
 
 A file is a collection of data stored as a unit on a computer. It can contain text, images, programs, or any other type of information. **All programs and data** are written to or read from a file. These instructions, or code, are interpreted or compiled by a computer to perform specific tasks.
 
-#### Folders (Also called directories)
+### Folders (Also called directories)
 
 Folders or directories are an organizational tool used to arrange files so you can store them neatly.
 
@@ -41,7 +41,7 @@ Folders or directories are an organizational tool used to arrange files so you c
 
 Some folders are specialized to contain code. These are called a repository, a special type of folder. It's a central location where code, documentation, and other project files are stored and managed. Repositories are often used with version control systems like Git to track changes, collaborate with others, and maintain a history of the project's development.
 
-### Git & Repositories
+## Git & Repositories
 
 _This section is summarized from the article [About GitHub and Git](https://docs.github.com/en/get-started/start-your-journey/about-github-and-git)_
 
@@ -65,7 +65,7 @@ Essentially, Git and repositories provide a structured and efficient way to mana
 >
 > They are not the same thing. GitHub uses Git as a way to manage and track code in the cloud. In essence, Git is the engine that powers version control, while GitHub is the platform that makes it accessible and collaborative.
 
-## Connecting Your IDE
+# Connecting Your IDE
 
 Now that you understand the basics of what Git is, let's add it to the IDE.
 
@@ -79,7 +79,7 @@ Use this guide to quickly understand and use Git Tools within VSCode:
 - [Using Git in VSCode - Full dive](https://code.visualstudio.com/docs/sourcecontrol/overview)
 - [Working with GitHub in VS Code](https://code.visualstudio.com/docs/sourcecontrol/github) - 8 mins
 
-## Working with Git
+# Working with Git
 
 _This section is summarized from the articles [About Git](https://docs.github.com/en/get-started/using-git/about-git), [Pushing commits to a remote repository](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository), and [Getting changes from a remote repository](https://docs.github.com/en/get-started/using-git/getting-changes-from-a-remote-repository)._
 
@@ -141,7 +141,7 @@ You can use this cheat-sheet to remember commands and concepts:
 - [Git Cheat Sheet](https://training.github.com/downloads/github-git-cheat-sheet/)
 - [Git Cheat Sheet PDF](https://training.github.com/downloads/github-git-cheat-sheet.pdf)
 
-### Interacting with Remote Repositories
+## Interacting with Remote Repositories
 
 There are two main models for collaboration:
 
@@ -149,11 +149,11 @@ There are two main models for collaboration:
 
 - **Fork and Pull:** Developers create their own copies (forks) of the repository. They make changes in their fork, then create a pull request to merge their changes back into the original repository.
 
-#### Pushing Changes (`git push`):
+### Pushing Changes (`git push`):
 
 - To upload your local commits to the remote repository, use `git push <remote> <branch>`. For example, `git push origin my-branch` pushes the `my-branch` from your local repository to the `origin` remote.
 
-#### Pulling Changes (`git pull`):
+### Pulling Changes (`git pull`):
 
 - To download changes from a remote repository and merge them into your local branch, use `git pull <remote> <branch>`. This is a shortcut for `git fetch` (which downloads changes) followed by `git merge`.
 
@@ -167,37 +167,37 @@ You can see how these commands work together in this Git Diagram
 > **NOTE:**
 > All of these commands are done in the terminal. However, you'll likely be using VSCode and GitHub Desktop to expedite the process. Instead, you'll be working with a GUI, but all the concepts are still the same. It just isn't in a terminal.
 
-## Collaborating on GitHub
+# Collaborating on GitHub
 
 _This section is summarized from the article [Communicating on GitHub](https://docs.github.com/en/get-started/using-github/communicating-on-github)._
 
 GitHub offers different tools for different communication needs within a repository:
 
-### 1. Issues:
+## 1. Issues:
 
 Use for tracking specific tasks, bugs, feature requests, and feedback related to the codebase. Issues are repository-specific, often have assigned owners, and generally lead to actionable tasks (like a fix or improvement). In essence, GitHub's bug-tracking system.
 
-#### When to Use?
+### When to Use?
 
 - You need to track tasks, report bugs, give feedback on a feature, or ask questions about repository files.
 
-### 2. Pull Requests (PRs):
+## 2. Pull Requests (PRs):
 
 Use for proposing specific code changes. PRs allow commenting on proposed changes, collaborative review, and integrating code into the repository. They are repository-specific and directly tied to code modifications.
 
-#### When to use?
+### When to use?
 
 - You want to fix a typo, make code changes, fix an issue with code, or comment on suggested changes.
 
-### 3. Discussions:
+## 3. Discussions:
 
 Use for broader, open-ended conversations, community building, brainstorming, and sharing information that isn't directly tied to specific code changes. Discussions can span multiple repositories and don't always have a clear owner or lead to specific tasks. They function more like forums.
 
-#### When to use?
+### When to use?
 
 - You have a general question not related to specific files, want to share news, start an open-ended conversation, or make announcements to the community.
 
-## Workflow
+# Workflow
 
 _This section is summarized from the article [GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow)._
 
@@ -242,7 +242,7 @@ Vincent Driessen provides a detailed overview on a successful Git branching mode
 
 Next you'll learn conventions to ensure clear and descriptive names for commits, pull requests, and branches. This helps everyone in understanding your purpose and avoids clutter.
 
-## Git Conventions
+# Git Conventions
 
 **Guidelines:**
 
@@ -254,7 +254,7 @@ Next you'll learn conventions to ensure clear and descriptive names for commits,
 >
 > **Consistent Style Guide:** Use an extension or follow coding style guides for consistent formats and syntax.
 
-### Git Commit Messages
+## Git Commit Messages
 
 - **Clear and Concise:** Use clear and concise messages that accurately describe the changes made.
 - **Present Tense:** Write messages in the present tense.
@@ -269,7 +269,7 @@ Fix bug in login form
 The login form was not validating email addresses correctly. This commit fixes the validation logic to ensure that only valid email addresses are accepted.
 ```
 
-### Git Branch Naming
+## Git Branch Naming
 
 - **Descriptive Names:** Use clear and descriptive names that reflect the purpose of the branch.
 - **Lowercase and Hyphen-Separated:** Use lowercase letters and hyphens to separate words.
@@ -280,7 +280,9 @@ Example:
 - **Bugfix Branches:** Use a prefix like bugfix/ (e.g., bugfix/broken-link).
 - **Hotfix Branches:** Use a prefix like hotfix/ (e.g., hotfix/urgent-security-fix).
 
-#### Version Convention
+Sometimes you'll hear that you create or develop a "topic" which is essentially the broad term for features or bugfixes.
+
+### Version Convention
 
 When you release your software as a version, you will typically follow the Semantic Versioning 2.0.0 (SemVer 2.0.0) format, where versions are typically represented as X.Y.Z.
 
@@ -302,9 +304,9 @@ Example:
 - `v1.1.1`: Bug fix released without introducing new features or breaking existing functionality.
 - `v2.0.0`: Major overhaul with significant changes that may break existing code.
 
-### Pull Requests
+## Pull Requests
 
-#### Titles
+### Titles
 
 - **Clear and Concise:** Use clear and concise titles that accurately describe the changes.
 - **Present Tense:** Write titles in the present tense.
@@ -315,7 +317,7 @@ Example:
 - Recommended: `Fix bug in login form`
 - Not recommended: `Fixed login form bug`
 
-#### Descriptions
+### Descriptions
 
 - **Clear and Concise:** Provide a clear and concise description of the changes.
 - **Context:** Explain the context of the changes and why they were made.
@@ -323,9 +325,9 @@ Example:
 
 More conventions can be found here: [Best Practices](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/getting-started/best-practices-for-pull-requests)
 
-## Proposing Changes, Reviewing Code, and Providing Feedback
+# Proposing Changes, Reviewing Code, and Providing Feedback
 
-### Branching
+## Branching
 
 _This section is summarized from the article [About branching](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches)_
 
@@ -350,7 +352,7 @@ Learn Git Branching is a great website to understand how branching and merges wo
 
 - [Learn Git Branching](https://learngitbranching.js.org/)
 
-### Pull Requests
+## Pull Requests
 
 _This section is summarized from the articles [About pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests) & [About PR reviews](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/about-pull-request-reviews)_
 
@@ -385,7 +387,7 @@ Further recommended reading but not required:
 - [Comparing branches](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-comparing-branches-in-pull-requests)
 - [Dismissing a pull request review](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/dismissing-a-pull-request-review)
 
-### Resolving merge conflicts
+## Resolving merge conflicts
 
 _This section is summarized from the article [About merge conflicts](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/about-merge-conflicts)_
 
@@ -404,7 +406,7 @@ To help ease the headaches when you come across a merge conflict, here are some 
 - [Resolving a merge conflict on GitHub](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-on-github) - 3 mins
 - [Resolving merge conflicts in VSCode](https://code.visualstudio.com/docs/sourcecontrol/overview#_merge-conflicts)
 
-### Integrating The Change
+## Integrating The Change
 
 _This section is summarized from the article [About pull request merges](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/about-pull-request-merges)_
 
