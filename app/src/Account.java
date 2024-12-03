@@ -76,7 +76,7 @@ public class Account {
     private void transact(double amount, String type, String description) {
         Logger.logEvent(Logger.LogLevel.DEBUG, Constants.A_SOURCE,
                 "Transaction successful. " + type == "DEPOSIT" ? Constants.ANSI_GREEN
-                        : Constants.ANSI_RED + type + ": " + amount + Constants.ANSI_RESET + ". New balance: $  "
+                        : Constants.ANSI_RED + type + ": " + amount + Constants.ANSI_RESET + ". New balance: $"
                                 + Constants.ANSI_CYAN + balance
                                 + Constants.ANSI_RESET);
         LocalDateTime now = LocalDateTime.now();
@@ -86,7 +86,7 @@ public class Account {
                 + balance;
 
         synchronized (fileLock) {
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter("./app/logs/transactions.csv", true))) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(Constants.TRANSACTION_FILE, true))) {
                 writer.write(transactionRecord);
                 writer.newLine();
                 if (Main.end) {
