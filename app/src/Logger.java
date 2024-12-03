@@ -1,5 +1,9 @@
 package app.src;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -9,6 +13,7 @@ public class Logger {
     }
 
     private static LogLevel logSeverity;
+    private static final Object fileLock = new Object();
 
     /**
      * Constructs a new Logger instance with the specified log severity level. Only
@@ -60,18 +65,28 @@ public class Logger {
                 : level == LogLevel.WARN ? Constants.ANSI_YELLOW + " [" + level + "] " + Constants.ANSI_RESET
                         : level == LogLevel.DEBUG ? Constants.ANSI_CYAN + " [" + level + "] " + Constants.ANSI_RESET
                                 : " [" + level + "] ";
-        String sourceFormat = source == "MARKET" ? Constants.ANSI_GREEN + " [" + source + "]:" + Constants.ANSI_RESET
-                : Constants.ANSI_BLUE + " [" + source + "]:" + Constants.ANSI_RESET;
+        String sourceFormat = source == "MARKET" ? Constants.ANSI_GREEN + "[" + source + "]:" + Constants.ANSI_RESET
+                : Constants.ANSI_BLUE + "[" + source + "]:" + Constants.ANSI_RESET;
+
+        String logRecord = formatter.format(LocalDateTime.now()) + levelFormat + sourceFormat + " " + message;
 
         if (level.ordinal() >= logSeverity.ordinal()) {
-            if (level == LogLevel.INFO) {
-                System.out.println(
-                        formatter.format(LocalDateTime.now()) + levelFormat + sourceFormat + " "
-                                + message);
+            PrintStream stream = (level == LogLevel.ERROR || level == LogLevel.WARN) ? System.err : System.out;
+            stream.println(logRecord);
+            if (Main.logFile) {
+                synchronized (fileLock) {
+                    try (BufferedWriter writer = new BufferedWriter(new FileWriter(Constants.LOG_FILE, true))) {
+                        writer.write(logRecord.replaceAll("\u001B\\[[;\\d]*m", ""));
+                        writer.newLine();
+                        if (Main.end) {
+                            writer.flush();
+                        }
+                    } catch (IOException e) {
+                        logEvent(LogLevel.ERROR, Constants.L_SOURCE,
+                                "Error writing log to file: " + e.getMessage());
+                    }
+                }
             }
-            System.err.println(
-                    formatter.format(LocalDateTime.now()) + levelFormat + sourceFormat + " "
-                            + message);
         }
     }
 

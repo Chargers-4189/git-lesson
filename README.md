@@ -9,10 +9,11 @@ Today, you will learn how Git and GitHub work by creating an application collabo
 Create a simple stock application that will generate profit. You will use the strategy of `buy low and sell high` for this application. Six stocks are available with different starting values and starting with varying levels of risk.
 
 Here are the six companies and their details.
-| Company | Coke | Walmart | Google | Nvidia | Microsoft | Honey Well |
-| -------------------- | --------- | --------- | ------- | ------- | ------ | ---------- |
-| Starting Stock Value | $64.38 | $91.88 | $169.43 | $136.02 | $422.99 | $230.60 |
-| Starting Volatile Level | Low | Medium | High | Medium | High | High |
+
+| Company                 | Coke   | Walmart | Google  | Nvidia  | Microsoft | Honey Well |
+| ----------------------- | ------ | ------- | ------- | ------- | --------- | ---------- |
+| Starting Stock Value    | $64.38 | $91.88  | $169.43 | $136.02 | $422.99   | $230.60    |
+| Starting Volatile Level | Low    | Medium  | High    | Medium  | High      | High       |
 
 `50 Milliseconds = 1 Day`
 
@@ -21,11 +22,12 @@ These values will change every 50 milliseconds (configurable), representing one 
 ## Rules
 
 Your application must meet these requirements to be complete.
-| Starting Budget | $1,000 |
+
+| Starting Budget | $1,000   |
 | --------------- | -------- |
-| Target Goal | $5,000 |
-| Bonus Goal | $8,000 |
-| Time frame | 365 Days |
+| Target Goal     | $5,000   |
+| Bonus Goal      | $8,000   |
+| Time frame      | 365 Days |
 
 1. The application must reach at least $5,000 by the 365th day (one year) from its starting budget of $1,000.
 2. The application must track the amount of stock per company it purchases or sells daily.
@@ -50,10 +52,11 @@ Click here to view the Google Sheets: [Stock Simulated Example](https://docs.goo
 As mentioned before, the Volatile Level is the chance of a stock's price fluctuating extremely or not much. In other words, when it is LOW, the price change is minimal, only a couple of dollars change. When it is HIGH, the price change is substantial, tens or fifty dollars change. This is not directional; meaning at a HIGH level, the price will not always drastically increase. It can decrease the price immensely resulting in losses.
 
 You can see the effects in this table:
-| Google's Stock | Day 163 | Day 164 | Day 165 | Day 166 | Day 167 | Day 168 | Day 169 | Day 170 | Day 171 | Day 172 |
-|------------------|---------|---------|---------|---------|---------|---------|---------|---------|---------|---------|
-| Volatility Level | LOW | LOW | LOW | LOW | LOW | HIGH | HIGH | HIGH | HIGH | HIGH |
-| Stock Price | $100.55 | $100.72 | $100.71 | $96.44 | $97.35 | $97.07 | $87.92 | $88.43 | $103.13 | $123.28 |
+
+| Google's Stock   | Day 163 | Day 164 | Day 165 | Day 166 | Day 167 | Day 168 | Day 169 | Day 170 | Day 171 | Day 172 |
+| ---------------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
+| Volatility Level | LOW     | LOW     | LOW     | LOW     | LOW     | HIGH    | HIGH    | HIGH    | HIGH    | HIGH    |
+| Stock Price      | $100.55 | $100.72 | $100.71 | $96.44  | $97.35  | $97.07  | $87.92  | $88.43  | $103.13 | $123.28 |
 
 Google's stock price dramatically dropped and rose when the volatility level switched to HIGH. Additionally, the LOW section where all of the price changes are within $5. You can see the difference between Day 169 and 170 is not much. This is because when volatility is HIGH, the chance of fluctuating extremely is more frequent, but regular changes can still occur.
 
@@ -64,6 +67,114 @@ A simple algorithm to use this feature:
 > - If the Volatility level is HIGH and the price has drastically increased -> do not sell.
 
 LOW levels will typically represent peaks and troughs where it is stable. While MEDIUM and HIGH typically represent an increasing or decreasing stock price. You can incorporate much more complex algorithms that utilize past data to estimate. But remember that most of the fluctuations can be random and may drop to very low amounts.
+
+### Debugging & Transcripts
+
+We've added some tools to help you out in your program these include the debug, logs, transactions, and transcript.
+
+<details>
+
+<summary>Click to reveal</summary>
+
+#### Debugging
+
+Located in `Main.java`, you can find the log level suppression setting.
+
+```java
+private static final Logger log = new Logger(Logger.LogLevel.INFO);
+// Example use of DEBUG:
+private static final Logger log = new Logger(Logger.LogLevel.DEBUG);
+```
+
+You can change the `LogLevel` to four different levels:
+
+- `DEBUG`: Used for detailed information useful during development and debugging. It includes information that's not typically needed during normal operation.
+
+- `INFO`: Provides information about the normal operation of the application. These messages indicate that the system is functioning as expected.
+
+- `WARN`: Indicates a potential problem that may not be critical but requires attention. The application might still be functioning correctly, but there's a possibility of future issues.
+
+- `ERROR`: Signals a serious problem that has prevented the application from functioning correctly. These messages usually indicate an error condition that requires immediate attention.
+
+If addition to the log level, the location of where the log event occurred is documented:
+
+`2024-12-02T17:09:41.2157 [DEBUG]  [MARKET]:`
+
+Use this diagram to understand what logs will be suppressed with each log level setting.
+
+| Log Level Setting |  DEBUG Printed?  |  INFO Printed?   |  WARN Printed?   |  ERROR Printed?  |
+| :---------------: | :--------------: | :--------------: | :--------------: | :--------------: |
+|       DEBUG       | Yes (System.out) | Yes (System.out) | Yes (System.err) | Yes (System.err) |
+|       INFO        |        No        | Yes (System.out) | Yes (System.err) | Yes (System.err) |
+|       WARN        |        No        |        No        | Yes (System.err) | Yes (System.err) |
+|       ERROR       |        No        |        No        |        No        | Yes (System.err) |
+
+Example:
+
+```bash
+2024-12-02T17:09:41.2157 [DEBUG]  [MARKET]: Stock honeywell updated. Price: $228.47 | Volatility Level: LOW
+2024-12-02T17:23:52.2265 [WARN]  [ACCOUNT]: Insufficient funds. Please make more money.
+2024-12-02T17:23:52.2265 [WARN]  [MARKET]: Purchasing share failed: Transaction cancelled by account.
+2024-12-02T17:23:52.2275 [DEBUG]  [ACCOUNT]: DEPOSIT: 179.3. New balance: $506.12762994365613
+2024-12-02T17:23:52.2275 [DEBUG]  [MARKET]: Share sold from honeywell. Profit: $179.3 | Balance: $506.13 | Stock Price Now: $179.09
+2024-12-02T17:23:52.2285 [ERROR]  [MARKET]: Company name lookup failed: Invalid company name provided: cokee
+```
+
+When `DEBUG` is set, the stock market will start logging all stock prices and volatility in `/app/logs/stock-market.csv` in a comma-separated sheet. This is in order listed like above. You can use this to plot data on a chart or test an algorithm with. The console will also output additional information to debug your application.
+
+You can also let the application log to a file by setting the following in `Main.java` to true:
+
+```java
+public static final boolean logFile = false;
+```
+
+#### Account
+
+The bank account for your application will automatically log all transactions to `/apps/logs/transaction.csv`. This will be used to test if your application is following the rules and for you to debug any issues.
+
+Example:
+
+```bash
+# Order
+# [TIMESTAMP],[TYPE],[AMOUNT],[DESCRIPTION],[BALANCE LEFT]
+2024-12-02T17:25:28.7785,WITHDRAWAL,-338.18 ,Purchased 2 shares from honeywell.,3.7085227734557975
+2024-12-02T17:25:28.7785,DEPOSIT   ,169.18  ,Sold 1 shares from honeywell.,172.89395795852232
+```
+
+#### transcript.txt
+
+When you run your application inside VSCode, you can use the greater than operator `>` to redirect the output to a file. There's a preset file called `transcript.txt` that you can redirect this output to.
+
+Use the up arrow to use a previous command (the one that runs the application). Then append this at the end of the command:
+
+```bash
+[Running Command] > ./app/logs/transcript.txt
+```
+
+Example:
+
+```bash
+#Before
+c:; cd 'c:\pathToDirectory'; & 'C:\Program Files\Java\jdk-17\bin\java.exe' '-XX:+ShowCodeDetailsInExceptionMessages' '-cp' 'C:\pathToBin' 'app.src.Main'
+# After
+c:; cd 'c:\pathToDirectory'; & 'C:\Program Files\Java\jdk-17\bin\java.exe' '-XX:+ShowCodeDetailsInExceptionMessages' '-cp' 'C:\pathToBin' 'app.src.Main' > ./app/logs/transcript.txt
+```
+
+When you output to a transcript file, the formatting of the colors will not look the same:
+
+```
+2024-12-02T18:10:30.2522 [INFO] [32m[MARKET]:[0m [35mRandom Seed: 948573627495667526[0m
+```
+
+To avoid this, set `showConsoleColor` in `Main.java` to false. This will output the default color of the console so there are no formatting issues in the transcript.
+
+```java
+public static final boolean showConsoleColor = true;
+// Set to false
+public static final boolean showConsoleColor = false;
+```
+
+</details>
 
 ## Starter Code
 

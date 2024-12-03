@@ -80,7 +80,7 @@ public class StockMarket extends Thread {
         return stock.price;
       }
     }
-    Logger.logEvent(Logger.LogLevel.ERROR, Constants.M_SOURCE, Constants.ERR_M_COMP_NAME);
+    Logger.logEvent(Logger.LogLevel.ERROR, Constants.M_SOURCE, Constants.ERR_M_COMP_NAME + company);
     return -1;
   }
 
@@ -97,7 +97,7 @@ public class StockMarket extends Thread {
         return stock.volatility;
       }
     }
-    Logger.logEvent(Logger.LogLevel.ERROR, Constants.M_SOURCE, Constants.ERR_M_COMP_NAME);
+    Logger.logEvent(Logger.LogLevel.ERROR, Constants.M_SOURCE, Constants.ERR_M_COMP_NAME + company);
     return "";
   }
 
@@ -114,7 +114,7 @@ public class StockMarket extends Thread {
         return stock.shares;
       }
     }
-    Logger.logEvent(Logger.LogLevel.ERROR, Constants.M_SOURCE, Constants.ERR_M_COMP_NAME);
+    Logger.logEvent(Logger.LogLevel.ERROR, Constants.M_SOURCE, Constants.ERR_M_COMP_NAME + company);
     return -1;
   }
 
@@ -160,7 +160,7 @@ public class StockMarket extends Thread {
         return false;
       }
     }
-    Logger.logEvent(Logger.LogLevel.ERROR, Constants.M_SOURCE, Constants.ERR_M_COMP_NAME);
+    Logger.logEvent(Logger.LogLevel.ERROR, Constants.M_SOURCE, Constants.ERR_M_COMP_NAME + company);
     return false;
   }
 
@@ -206,7 +206,7 @@ public class StockMarket extends Thread {
         return false;
       }
     }
-    Logger.logEvent(Logger.LogLevel.ERROR, Constants.M_SOURCE, Constants.ERR_M_COMP_NAME);
+    Logger.logEvent(Logger.LogLevel.ERROR, Constants.M_SOURCE, Constants.ERR_M_COMP_NAME + company);
     return false;
   }
 
@@ -329,7 +329,7 @@ public class StockMarket extends Thread {
           ",";
     }
     output = output.substring(0, output.length() - 1);
-    try (BufferedWriter writer = new BufferedWriter(new FileWriter("./app/logs/stock-market.log", true))) {
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(Constants.STOCK_FILE, true))) {
       writer.write(output);
       writer.newLine();
       if (Main.end) {

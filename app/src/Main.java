@@ -10,7 +10,9 @@ public class Main {
   private static int day = 0;
 
   @SuppressWarnings("unused")
-  private static final Logger log = new Logger(Logger.LogLevel.INFO);
+  private static final Logger log = new Logger(Logger.LogLevel.DEBUG);
+  public static final boolean logFile = false;
+  public static final boolean showConsoleColor = true;
 
   private static final Account account = new Account(Constants.INITIAL_BALANCE);
   private static final StockMarket market = new StockMarket(account);
@@ -35,14 +37,13 @@ public class Main {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    System.out.println("|----- MARKET CLOSED | APP STOPPED -----|");
-    System.out.println("FINAL ACCOUNT BALANCE: $" + account.getBalance());
     System.out
-        .println(account.getBalance() >= 5000 ? Constants.ANSI_GREEN + "Reached target goal!" + Constants.ANSI_RESET
-            : Constants.ANSI_RED + "Failed to reach target goal." + Constants.ANSI_RESET);
-    System.out
-        .println(account.getBalance() >= 8000 ? Constants.ANSI_GREEN + "Reached bonus goal!" + Constants.ANSI_RESET
-            : Constants.ANSI_RED + "Failed to reach bonus goal." + Constants.ANSI_RESET);
+        .println("|----- MARKET CLOSED | APP STOPPED -----|\nFINAL ACCOUNT BALANCE: $" + account.getBalance() + "\n"
+            + (account.getBalance() >= 5000 ? Constants.ANSI_GREEN + "Reached target goal!" + Constants.ANSI_RESET
+                : Constants.ANSI_RED + "Failed to reach target goal." + Constants.ANSI_RESET)
+            + "\n"
+            + (account.getBalance() >= 8000 ? Constants.ANSI_GREEN + "Reached bonus goal!" + Constants.ANSI_RESET
+                : Constants.ANSI_RED + "Failed to reach bonus goal." + Constants.ANSI_RESET));
   }
 
   /**
