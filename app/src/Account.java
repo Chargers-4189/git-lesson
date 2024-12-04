@@ -25,7 +25,7 @@ public class Account {
     public synchronized double getBalance() {
         return Math.round(balance * 100.0) / 100.0;
     }
-    //test
+
     /**
      * Deposits funds into the account. This method is intended for internal
      * use within the {@code StockMarket} class.
