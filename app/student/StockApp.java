@@ -37,6 +37,13 @@ public class StockApp extends Thread {
         Thread.currentThread().interrupt();
       }
       // Your Code Here
+      //volititity variables
+       String CokeColaVolatility = "low";
+       String WalmartVolatility = "medium";
+       String GoogleVolatility = "high";
+       String NvidiaVolatility = "medium";
+       String MicrosoftVolatility = "high";
+       String HoneywellVolatility = "high";
       //Averageing Code
 
         ArrayList<Double> stocksListCokeCola = new ArrayList<Double>();
