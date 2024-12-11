@@ -166,14 +166,16 @@ public class StockApp extends Thread {
       double startHigh[] = {StartHighCokeCola, StartHighWalmart, StartHighGoogle, StartHighNvidia, StartHighMicrosoft, StartHighHoneywell};
     
       for(int i = 0; i < 6; i++) {
-        if(daysPassed != 365) {
+        if(daysPassed < 355) {
           if((volatileLvl[i].equals("HIGH") || volatileLvl[i].equals("MEDIUM")) && prices[i] <= (startLow[i] * 2)) { // buy
-            stockMarket.buyShares(4, companys[i]);
+            for(int j = 0; j < 4; j++) { 
+              stockMarket.buyShares(4, companys[i]);
+            }
           }
 
-          if((volatileLvl[i].equals("MEDIUM") || volatileLvl[i].equals("HIGH")) && prices[i] >= (startHigh[i] * 0.9)) { // sell
+          if((volatileLvl[i].equals("MEDIUM") || volatileLvl[i].equals("HIGH")) && prices[i] >= (startHigh[i] * 1.2)) { // sell
             for(int j = 0; j < 4; j++) {
-              stockMarket.sellShares(1, companys[i]);
+              stockMarket.sellShares(4, companys[i]);
             }
           }
         } 
@@ -185,6 +187,5 @@ public class StockApp extends Thread {
         }
       }
     }
-    System.out.println(account.getBalance());
   }
 }
