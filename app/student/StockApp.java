@@ -73,12 +73,12 @@ public class StockApp extends Thread {
             //Vairbale counting how many days have passed
             int daysPassed = 0;
             //getting stocks
-            stocksListCokeCola.add(stockMarket.getStockPrice("Coke-Cola"));
-            stocksListGoogle.add(stockMarket.getStockPrice("Google"));
-            stocksListNvidia.add(stockMarket.getStockPrice("Nvidia"));
-            stocksListWalmart.add(stockMarket.getStockPrice("Walmart"));
-            stocksListHoneywell.add(stockMarket.getStockPrice("Coke-Cola"));
-            stocksListMicrosoft.add(stockMarket.getStockPrice("Microsoft"));
+            stocksListCokeCola.add(stockMarket.getStockPrice("coke"));
+            stocksListGoogle.add(stockMarket.getStockPrice("google"));
+            stocksListNvidia.add(stockMarket.getStockPrice("nvidia"));
+            stocksListWalmart.add(stockMarket.getStockPrice("walmart"));
+            stocksListHoneywell.add(stockMarket.getStockPrice("honeywell"));
+            stocksListMicrosoft.add(stockMarket.getStockPrice("microsoft"));
 
             //System.out.println(stocksListGoogle.get(i));
 
@@ -87,7 +87,7 @@ public class StockApp extends Thread {
             SumAverageNvidia = SumAverageNvidia + stocksListNvidia.get(daysPassed);
             SumAverageWalmart = SumAverageWalmart + stocksListWalmart.get(daysPassed);
             SumAverageHoneywell = SumAverageHoneywell + stocksListHoneywell.get(daysPassed);
-            SumAverageMicrosoft = SumAverageMicrosoft + stocksListMicrosoft.get(daysPassed);\
+            SumAverageMicrosoft = SumAverageMicrosoft + stocksListMicrosoft.get(daysPassed);
             
             //Taking out old data
             if(daysPassed >= dataAmount){
@@ -154,22 +154,37 @@ public class StockApp extends Thread {
             
 
       // Available Companies: coke walmart google nvidia microsoft honeywell
-      //Caleb made the code below, I didn't do anything to this
+      //Caleb made the code below, I didn't do anything to this - Edited code: Jack
+      
+      //may need to move these
+      String companys[] = {"coke", "walmart", "google", "nvidia", "microsoft", "honeywell"}; // 0 - 5
+      double prices[] = {stockMarket.getStockPrice(companys[0]), stockMarket.getStockPrice(companys[1]), stockMarket.getStockPrice(companys[2]), stockMarket.getStockPrice(companys[3]), stockMarket.getStockPrice(companys[4]), stockMarket.getStockPrice(companys[5]) };
+      String volatileLvl[] = {stockMarket.getVolatileLevel(companys[0]), stockMarket.getVolatileLevel(companys[1]), stockMarket.getVolatileLevel(companys[2]), stockMarket.getVolatileLevel(companys[3]), stockMarket.getVolatileLevel(companys[4]), stockMarket.getVolatileLevel(companys[5]) };
+      double balance = account.getBalance(); 
+      
+      double startLow[] = {StartLowCokeCola, StartLowWalmart, StartLowGoogle, StartLowNvidia, StartLowMicrosoft, StartLowHoneywell};
+      double startHigh[] = {StartHighCokeCola, StartHighWalmart, StartHighGoogle, StartHighNvidia, StartHighMicrosoft, StartHighHoneywell};
+    
+      for(int i = 0; i < 6; i++) {
+        if(daysPassed != 365) {
+          if((volatileLvl[i].equals("HIGH") || volatileLvl[i].equals("MEDIUM")) && prices[i] <= (startLow[i] * 2)) { // buy
+            stockMarket.buyShares(4, companys[i]);
+          }
 
-      String company = "honeywell";
-      double price = stockMarket.getStockPrice(company);
-      String volatileLvl = stockMarket.getVolatileLevel(company);
-      double balance = account.getBalance();
-
-      System.out.println(
-          company +
-              " | Volatile Level: " +
-              volatileLvl +
-              " | Stock Price: " +
-              price +
-              " | Balance: " +
-              balance);
-
+          if((volatileLvl[i].equals("MEDIUM") || volatileLvl[i].equals("HIGH")) && prices[i] >= (startHigh[i] * 0.9)) { // sell
+            for(int j = 0; j < 4; j++) {
+              stockMarket.sellShares(1, companys[i]);
+            }
+          }
+        } 
+  
+      }
+      if(daysPassed == 365) {
+        for(int i = 0; i < 6; i++) {
+          stockMarket.sellShares(stockMarket.getShares(companys[i]), companys[i]);
+        }
+      }
     }
+    System.out.println(account.getBalance());
   }
 }
