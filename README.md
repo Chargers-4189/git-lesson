@@ -25,17 +25,17 @@ Your application must meet these requirements to be complete.
 
 | Starting Budget | $1,000   |
 | --------------- | -------- |
-| Target Goal     | $3,000   |
-| Bonus Goal      | $5,000   |
+| Target Goal     | $5,000   |
+| Bonus Goal      | $8,000   |
 | Time frame      | 365 Days |
 
-1. The application must reach at least $3,000 by the 365th day (one year) from its starting budget of $1,000.
+1. The application must reach at least $5,000 by the 365th day (one year) from its starting budget of $1,000.
 2. The application must track the amount of stock per company it purchases or sells daily.
 3. The application must track the net worth of purchasing and selling of stocks.
 4. On the 365th day, the application must report how many stocks it bought and sold for each company.
 5. The application cannot take or give money from any outside methods. Change in balance must be done by the two methods of `buyStock()` and `sellStock()`.
 6. You can only modify the code in the `/app/student` directory. You cannot modify the code in the `/app/src/` directory.
-7. The application must surpass the $3,000 target by 25% of all random runs to pass the requirement.
+7. The application must surpass the $5,000 target by 25% of all random runs to pass the requirement.
 
 ## More Details
 
@@ -572,7 +572,7 @@ You will be graded based on how well your teammates communicate and collaborate 
 |              Criterion                |                                                        4 - Excellent (10 points)                                                        |                                                  3 - Good (7 points)                                                  |                                             2 - Fair (4 points)                                                |                                1 - Poor (1 point)                                  |  0 - Not Attempted (0 points)    |
 | :-----------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------: | :------------------------------: |
 |   Meets Requirements (Rules 1-5):     |                                 All requirements (target goal, tracking, restrictions) flawlessly met.                                  |                             Most requirements met; minor omissions or inconsistencies.                                |                           Several requirements are unmet or significantly flawed.                              |           Most requirements unmet; application largely non-functional.             |   Application not submitted.     |
-|   Algorithm Performance (Rule 7):     |                             Algorithm consistently surpasses the $3,000 target in over 25% of random runs.                              |                    Algorithm surpasses the target in over 10% of runs, with occasional failures.                      |                     Algorithm surpasses the target in under 10% of runs; many failures.                        |                  Algorithm rarely or never surpasses the target.                   |           Not tested.            |
+|   Algorithm Performance (Rule 7):     |                             Algorithm consistently surpasses the $5,000 target in over 25% of random runs.                              |                    Algorithm surpasses the target in over 10% of runs, with occasional failures.                      |                     Algorithm surpasses the target in under 10% of runs; many failures.                        |                  Algorithm rarely or never surpasses the target.                   |           Not tested.            |
 |    Code Clarity and Readability:      |                                   Code is well-organized, well-documented, and easy to understand.                                      |                Code is generally understandable, but could benefit from more comments or organization.                |                 Code is difficult to understand; lack of comments or inconsistent formatting.                  |             Code is poorly written, unreadable, and lacks structure.               | Code is missing or unorganized.  |
 |         Branching Strategy:           |    Consistent use of feature, bugfix, and release branches; clear naming conventions; effective use of main and development branches    |                     Mostly correct branching; minor inconsistencies in naming or organization.                        |        Some misuse of branches; inconsistent naming; and difficulty understanding the branch structure.        |    Significant misuse of branches; confusing or disorganized branch structure.     |        No branches used.         |
 |           Commit Messages:            |                     All commits have clear, concise, and informative messages following the specified conventions.                      |                             Most commits have good messages; some minor inconsistencies.                              |                  Many commits lack sufficient information or follow inconsistent conventions.                  |           Commit messages are unclear, incomplete, or missing entirely.            |        No commits made.          |
