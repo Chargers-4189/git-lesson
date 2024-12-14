@@ -39,10 +39,10 @@ public class Main {
     }
     System.out
         .println("|----- MARKET CLOSED | APP STOPPED -----|\nFINAL ACCOUNT BALANCE: $" + account.getBalance() + "\n"
-            + (account.getBalance() >= 5000 ? Constants.ANSI_GREEN + "Reached target goal!" + Constants.ANSI_RESET
+            + (account.getBalance() >= 3000 ? Constants.ANSI_GREEN + "Reached target goal!" + Constants.ANSI_RESET
                 : Constants.ANSI_RED + "Failed to reach target goal." + Constants.ANSI_RESET)
             + "\n"
-            + (account.getBalance() >= 8000 ? Constants.ANSI_GREEN + "Reached bonus goal!" + Constants.ANSI_RESET
+            + (account.getBalance() >= 5000 ? Constants.ANSI_GREEN + "Reached bonus goal!" + Constants.ANSI_RESET
                 : Constants.ANSI_RED + "Failed to reach bonus goal." + Constants.ANSI_RESET));
   }
 
